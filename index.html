@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>PRIM - WebGL Programatic Modelling</title>
+
+<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
+<link rel="stylesheet" href="css/normalize.css" />
+<link rel="stylesheet" href="css/foundation.min.css" />
+
+<script src="js/custom.modernizr.js"></script>
+
+<script src="js/three.min.js"></script>
+
+<style type="text/css">
+
+body
+{
+    background-color: #222;
+}
+
+#main
+{
+}
+
+#top
+{
+    background-color: #111;
+    height: 40px;
+}
+
+#render
+{
+}
+
+#editor
+{
+    background-color: #F00;
+}
+
+#mode
+{
+    background-color: #0F0;
+}
+
+</style>
+
+</head>
+<body>
+<nav class="top-bar">
+    <ul class="title-area">
+        <li class="name">
+        <h1>PRIM</h1>
+        </li>
+    </ul>
+
+    <section class="top-bar-section">
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li><a href="#">IMPORT</a></li>
+            <li><a href="#">EXPORT</a></li>
+        </ul>
+
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li><a href="#">STATS</a></li>
+            <li><a href="#">WIREFRAME</a></li>
+            <li><a href="#">FULL</a></li>
+            <li><a href="#">COMBO</a></li>
+        </ul>
+    </section>
+</nav>
+
+<div class="full-width" id="main">
+
+    <div class="large-9 columns full-height" id="render">
+    </div>
+
+    <div class="large-3 columns" id="editor">
+        EDITOR
+    </div>
+
+</div>
+<script>
+document.write('<script src=' +
+        ('__proto__' in {} ? 'js/zepto' : 'js/jquery') +
+        '.js><\/script>')
+</script>
+<script src="js/foundation.min.js"></script>
+<script>
+$(document).foundation();
+
+// Initialise Three.js
+// get the DOM element to attach to
+// - assume we've got jQuery to hand
+var $container = $('#render');
+
+// set the scene size
+var WIDTH = $container.width();
+var HEIGHT = $(window).height() - 50; 
+
+// set some camera attributes
+var VIEW_ANGLE = 45,
+    ASPECT = WIDTH / HEIGHT,
+    NEAR = 0.1,
+    FAR = 10000;
+
+// create a WebGL renderer, camera
+// and a scene
+var renderer = new THREE.WebGLRenderer();
+var camera = new THREE.PerspectiveCamera(  VIEW_ANGLE,
+        ASPECT,
+        NEAR,
+        FAR  );
+var scene = new THREE.Scene();
+
+// the camera starts at 0,0,0 so pull it back
+camera.position.z = 300;
+
+// start the renderer
+renderer.setSize(WIDTH, HEIGHT);
+
+// attach the render-supplied DOM element
+$container.append(renderer.domElement);
+
+// create the sphere's material
+var sphereMaterial = new THREE.MeshLambertMaterial(
+        {
+color: 0xCC0000
+});
+
+// set up the sphere vars
+var radius = 50, segments = 16, rings = 16;
+
+// create a new mesh with sphere geometry -
+// we will cover the sphereMaterial next!
+var sphere = new THREE.Mesh(
+        new THREE.SphereGeometry(radius, segments, rings),
+        sphereMaterial);
+
+// add the sphere to the scene
+scene.add(sphere);
+
+// and the camera
+scene.add(camera);
+
+// create a point light
+var pointLight = new THREE.PointLight( 0xFFFFFF );
+
+// set its position
+pointLight.position.x = 10;
+pointLight.position.y = 50;
+pointLight.position.z = 130;
+
+// add to the scene
+scene.add(pointLight);
+
+// draw!
+renderer.render(scene, camera);
+</script>
+</body>
+</html>
