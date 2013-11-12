@@ -46,12 +46,19 @@ body
 
 #top-nav
 {
-    padding: 0px 15px;
+    padding-left: 15px;
+    padding-right: 5px;
 }
 
 #top-nav .button-group
 {
     background-color: #111;
+}
+
+#top-nav .button-group .button
+{
+    border: 0px;
+    box-shadow: none;
 }
 
 #top-nav h1
@@ -82,15 +89,19 @@ body
 
 
         <!-- Right Nav Section -->
-        <ul class="right button-group radius">
-            <li><a href="#wireframe" class="button">WIREFRAME</a></li>
-            <li><a href="#textured" class="button success">TEXTURED</a></li>
-            <li><a href="#combo" class="button">COMBO</a></li>
-        </ul>
+        <div class="button-bar right">
+            <ul class="button-group radius">
+                <li><a href="#wireframe" class="button secondary">WIREFRAME</a></li>
+                <li><a href="#textured" class="button">TEXTURED</a></li>
+                <li><a href="#combo" class="button secondary">COMBO</a></li>
+            </ul>
+        </div>
 
-        <ul class="right">
-            <li><a href="#">STATS</a></li>
-        </ul>
+        <div class="button-bar right">
+            <ul class="button-group radius">
+                <li><a href="#" class="button secondary">STATS</a></li>
+            </ul>
+        </div>
 
     </section>
 </nav>
