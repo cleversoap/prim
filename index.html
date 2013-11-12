@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>PRIM - WebGL Programatic Modelling</title>
+<link href='http://fonts.googleapis.com/css?family=Vampiro+One' rel='stylesheet' type='text/css'>
 
 <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
 <link rel="stylesheet" href="css/normalize.css" />
@@ -26,12 +27,6 @@ body
 {
 }
 
-#top
-{
-    background-color: #111;
-    height: 40px;
-}
-
 #render
 {
 }
@@ -50,11 +45,28 @@ body
     margin: auto; 
 }
 
+#top-nav
+{
+    padding: 0px 15px;
+}
+
+#top-nav .button-group
+{
+    background-color: #111;
+}
+
+#top-nav h1
+{
+    color: #FFF;
+    font-family: 'Vampiro One', cursive;
+    font-size: 2.5em;
+}
+
 </style>
 
 </head>
 <body>
-<nav class="top-bar">
+<nav class="top-bar" id="top-nav">
     <ul class="title-area">
         <li class="name">
         <h1>PRIM</h1>
@@ -68,13 +80,19 @@ body
             <li><a href="#">EXPORT</a></li>
         </ul>
 
+
+
         <!-- Right Nav Section -->
+        <ul class="right button-group radius">
+            <li><a href="#wireframe" class="button">WIREFRAME</a></li>
+            <li><a href="#textured" class="button">TEXTURED</a></li>
+            <li><a href="#combo" class="button">COMBO</a></li>
+        </ul>
+
         <ul class="right">
             <li><a href="#">STATS</a></li>
-            <li><a href="#">WIREFRAME</a></li>
-            <li><a href="#">FULL</a></li>
-            <li><a href="#">COMBO</a></li>
         </ul>
+
     </section>
 </nav>
 
@@ -174,6 +192,9 @@ renderer.render(scene, camera);
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/tomorrow_night");
 editor.getSession().setMode("ace/mode/javascript");
+
+// Resizable control border
+$("#controls").resizable();
 </script>
 </body>
 </html>
