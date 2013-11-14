@@ -4,67 +4,60 @@
 
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PRIM - WebGL Programatic Modelling</title>
 <link href='http://fonts.googleapis.com/css?family=Vampiro+One' rel='stylesheet' type='text/css'>
 
-<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-<link rel="stylesheet" href="css/normalize.css" />
-<link rel="stylesheet" href="css/foundation.min.css" />
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-<script src="js/custom.modernizr.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 <script src="js/three.min.js"></script>
 
 <style type="text/css">
+
 
 body
 {
     background-color: #222;
 }
 
-#main
+#editor
 {
+    position: relative; 
+    border: none;
+    width: 100%;
+    padding: 0px;
 }
 
 #render
 {
 }
 
-#controls
+#main
 {
-    background-color: #111;
-}
-
-#editor
-{
-    position: relative; 
-    display: block;
-    width: 100%; 
-    margin: auto; 
+    margin: 0px;
+    padding: 0px;
 }
 
 #top-nav
 {
-    padding-left: 15px;
-    padding-right: 5px;
+    margin-bottom: 0px;
 }
 
-#top-nav .button-group
+#top-nav #title
 {
-    background-color: #111;
-}
-
-#top-nav .button-group .button
-{
-    border: 0px;
-    box-shadow: none;
-}
-
-#top-nav h1
-{
+    font-family: "Vampiro One", cursive;
     color: #FFF;
-    font-family: 'Vampiro One', cursive;
     font-size: 2.5em;
 }
 
@@ -72,63 +65,50 @@ body
 
 </head>
 <body>
-<nav class="top-bar" id="top-nav">
-    <ul class="title-area">
-        <li class="name">
-        <h1>PRIM</h1>
-        </li>
+
+<div class="navbar navbar-inverse navbar-static-top" role="navigation" id="top-nav">
+    <ul class="nav navbar-nav navbar-left">
+        <li><a href="#" id="title">PRIM</a></li>
+        <li><a href="#export">Export</a></li>
     </ul>
-
-    <section class="top-bar-section">
-        <!-- Left Nav Section -->
-        <ul class="left">
-            <li><a href="#">IMPORT</a></li>
-            <li><a href="#">EXPORT</a></li>
-        </ul>
-
-
-
-        <!-- Right Nav Section -->
-        <div class="button-bar right">
-            <ul class="button-group radius">
-                <li><a href="#wireframe" class="button secondary">WIREFRAME</a></li>
-                <li><a href="#textured" class="button">TEXTURED</a></li>
-                <li><a href="#combo" class="button secondary">COMBO</a></li>
-            </ul>
-        </div>
-
-        <div class="button-bar right">
-            <ul class="button-group radius">
-                <li><a href="#" class="button secondary">STATS</a></li>
-            </ul>
-        </div>
-
-    </section>
-</nav>
-
-<div class="full-width" id="main">
-
-    <div class="large-9 columns full-height" id="render">
+    <div class="nav navbar-nav navbar-right navbar-inner form-inline">
+        <form class="navbar-form form-inline">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option1"> Textured 
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option2"> Wireframe
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="option3"> Full
+                </label>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="large-3 columns" id="controls">
-        <pre id="editor">
+<div class="container-fluid" id="main">
+
+    <div class="row-fluid">
+
+        <div class="col-md-9" id="render">
+        </div>
+
+        <div class="col-md-3" id="controls">
+            <pre id="editor">
 var i = 0;
 function x()
 {
     console.log(i);
 }
-        </pre>
-    </div>
+            </pre>
+        </div>
 
+    </div>
 </div>
-<script src="js/zepto.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/foundation.min.js"></script>
 <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-$(document).foundation();
-
 // Initialise Three.js
 // get the DOM element to attach to
 // - assume we've got jQuery to hand
@@ -136,7 +116,7 @@ var $container = $('#render');
 
 // set the scene size
 var WIDTH = $container.width();
-var HEIGHT = $(window).height() - $("#top-nav").height() - 4;
+var HEIGHT = $(window).height() - 67; 
 
 // set some camera attributes
 var VIEW_ANGLE = 45,
@@ -203,6 +183,9 @@ var editor = ace.edit("editor");
 editor.setTheme("ace/theme/tomorrow_night");
 editor.getSession().setMode("ace/mode/javascript");
 $("#editor").height($container.height());
+
+// Buttons
+$('.btn-group').button();
 </script>
 </body>
 </html>
