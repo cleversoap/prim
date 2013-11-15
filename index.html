@@ -36,16 +36,24 @@ body
     position: relative; 
     border: none;
     width: 100%;
+    margin: 0px;
 }
 
 #render
 {
+    text-align: center;
 }
 
 #main
 {
-    margin: 0px;
-    padding: 0px;
+    height: calc(100% - 5px) !important;
+    margin: 0px !important;
+    padding-top: 50px;
+}
+
+#main *
+{
+    height: 100%;
 }
 
 #top-nav
@@ -65,12 +73,17 @@ body
     padding-right: 0px !important;
 }
 
+html,body
+{
+    height: 100%;
+}
+
 </style>
 
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-static-top" role="navigation" id="top-nav">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="top-nav">
     <ul class="nav navbar-nav navbar-left">
         <li><a href="#" id="title">PRIM</a></li>
         <li><a href="#export">Export</a></li>
@@ -100,13 +113,11 @@ body
         </div>
 
         <div class="col-md-3" id="controls">
-            <pre id="editor">
-var i = 0;
+            <pre id="editor">var i = 0;
 function x()
 {
     console.log(i);
-}
-            </pre>
+}</pre>
         </div>
 
     </div>
@@ -120,7 +131,7 @@ var $container = $('#render');
 
 // set the scene size
 var WIDTH = $container.width();
-var HEIGHT = $(window).height() - 67; 
+var HEIGHT = $("#main").height();
 
 // set some camera attributes
 var VIEW_ANGLE = 45,
@@ -187,7 +198,6 @@ renderer.render(scene, camera);
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/tomorrow_night");
 editor.getSession().setMode("ace/mode/javascript");
-$("#editor").height($container.height());
 
 // Buttons
 $('.btn-group').button();
