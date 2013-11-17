@@ -4,81 +4,27 @@
 
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>PRIM - WebGL Programatic Modelling</title>
-<link href='http://fonts.googleapis.com/css?family=Vampiro+One' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Vampiro+One' rel='stylesheet' type='text/css' />
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css" />
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css" />
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 <script src="js/three.min.js"></script>
-
-<style type="text/css">
-
-
-body
-{
-    background-color: #222;
-}
-
-#editor
-{
-    position: relative; 
-    border: none;
-    width: 100%;
-    margin: 0px;
-}
-
-#render
-{
-    text-align: center;
-}
-
-#main
-{
-    height: calc(100% - 5px) !important;
-    margin: 0px !important;
-    padding-top: 50px;
-}
-
-#main *
-{
-    height: 100%;
-}
-
-#top-nav
-{
-    margin-bottom: 0px;
-}
-
-#top-nav #title
-{
-    font-family: "Vampiro One", cursive;
-    color: #FFF;
-    font-size: 2.5em;
-}
-
-#controls {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-
-html,body
-{
-    height: 100%;
-}
-
-</style>
 
 </head>
 <body>
@@ -193,6 +139,15 @@ scene.add(pointLight);
 
 // draw!
 renderer.render(scene, camera);
+
+// Rotate
+window.setInterval(function()
+        {
+        sphere.rotation.x += 0.01;
+        sphere.rotation.y += 0.01;
+        sphere.rotation.z += 0.01;
+        renderer.render(scene, camera);
+        }, 16);
 
 // Ace Editor
 var editor = ace.edit("editor");
